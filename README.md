@@ -79,7 +79,7 @@ nohup /opt/kafka/latest/bin/kafka-server-start.sh /opt/kafka/latest/config/serve
 
 #####  Run Twitter demo
 
-```
+
 9. Review the list of stock symbols whose Twitter mentiones we will be tracking
 http://en.wikipedia.org/wiki/List_of_S%26P_500_companies
 
