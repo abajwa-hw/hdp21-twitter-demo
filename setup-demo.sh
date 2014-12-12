@@ -3,6 +3,7 @@ rpmdb --rebuilddb
 /root/start_ambari.sh
 echo "Starting HBase..."
 /root/start_hbase.sh
+mkdir /root/hdp21-twitter-demo/logs
 echo "Installing mvn..."
 /root/hdp21-twitter-demo/setup-scripts/install_mvn.sh > /root/hdp21-twitter-demo/logs/install_mvn.log
 echo "Installing Kafka..."
