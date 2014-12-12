@@ -21,33 +21,28 @@ These setup steps are only needed first time
 2. Import Hortonworks_Sandbox_2.1.ova into VirtualBox/VMWare and configure its memory size to be at least 8GB RAM 
 3. Pull latest code/scripts
 ```
-git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git	
+    git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git	
 ```
-
 4. This starts Ambari/HBase and installs maven, kafka, solr, banana, phoenix-may take 10 min
 ```
-/root/twitterdemo/setup-demo.sh
-source ~/.bashrc
+    /root/twitterdemo/setup-demo.sh
+    source ~/.bashrc
 ```
-
 5. Open Ambari (http://sandbox.hortonworks.com:8080) and make below changes under HBase>config and then restart HBase
 ```
-zookeeper.znode.parent=/hbase (from /hbase-unsecure)
-hbase.regionserver.wal.codec=org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec
+    zookeeper.znode.parent=/hbase
+    hbase.regionserver.wal.codec=org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec
 ```
-
 6. Start storm via Ambari
-
 7. Twitter4J requires you to have a Twitter account and obtain developer keys by registering an "app". Create a Twitter account and app and get your consumer key/token and access keys/tokens:
 https://apps.twitter.com > sign in > create new app > fill anything > create access tokens
-
 8. Then enter the 4 values into the file below in the sandbox
 ```
-vi /root/twitterdemo/kafkaproducer/twitter4j.properties
-oauth.consumerKey=
-oauth.consumerSecret=
-oauth.accessToken=
-oauth.accessTokenSecret=
+    vi /root/twitterdemo/kafkaproducer/twitter4j.properties
+    oauth.consumerKey=
+    oauth.consumerSecret=
+    oauth.accessToken=
+    oauth.accessTokenSecret=
 ```
 
 
