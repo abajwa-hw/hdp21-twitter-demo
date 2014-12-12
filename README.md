@@ -19,13 +19,21 @@ These setup steps are only needed first time
 
 - Download HDP 2.1 sandbox VM image (Hortonworks_Sandbox_2.1.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
 - Import Hortonworks_Sandbox_2.1.ova into VMWare and configure its memory size to be at least 8GB RAM 
+- Find the IP address of the VM and add an entry into your machines hosts file e.g.
+```
+    192.168.191.241 sandbox.hortonworks.com sandbox    
+```
+- Connect to the VM via SSH (password hadoop)
+```
+    ssh root@sandbox.hortonworks.com
+```
 - Pull latest code/scripts
 ```
-    git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git`	
+    git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git	
 ```
 - This starts Ambari/HBase and installs maven, kafka, solr, banana, phoenix-may take 10 min
 ``` shell
-    /root/twitterdemo/setup-demo.sh
+    /root/hdp21-twitter-demo/setup-demo.sh
     source ~/.bashrc
 ```
 - Open Ambari (http://sandbox.hortonworks.com:8080) and make below changes under HBase>config and then restart HBase
@@ -38,7 +46,7 @@ These setup steps are only needed first time
 https://apps.twitter.com > sign in > create new app > fill anything > create access tokens
 - Then enter the 4 values into the file below in the sandbox
 ```
-    vi /root/twitterdemo/kafkaproducer/twitter4j.properties
+    vi /root/hdp21-twitter-demo/kafkaproducer/twitter4j.properties
     oauth.consumerKey=
     oauth.consumerSecret=
     oauth.accessToken=
@@ -78,14 +86,14 @@ http://en.wikipedia.org/wiki/List_of_S%26P_500_companies
 
 - Generate securities csv from above page and review the securities.csv generated. The last field is the generated tweet volume threshold 
 ```
-/root/twitterdemo/fetchSecuritiesList/rungeneratecsv.sh
-vi /root/twitterdemo/fetchSecuritiesList/securities.csv
+/root/hdp21-twitter-demo/fetchSecuritiesList/rungeneratecsv.sh
+vi /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv
 ```
 
 - Optional step for future runs: can add your other stocks/trending topics to csv to speed up tweets (no trailing spaces). Find these at http://mobile.twitter.com/trends
 ```
-sed -i '1i$HDP,Hortonworks,Technology,Technology,Santa Clara CA,0000000001,5' /root/twitterdemo/fetchSecuritiesList/securities.csv
-sed -i '1i#mtvstars,MTV Stars,Entertainment,Entertainment,Hollywood CA,0000000001,40' /root/twitterdemo/fetchSecuritiesList/securities.csv
+sed -i '1i$HDP,Hortonworks,Technology,Technology,Santa Clara CA,0000000001,5' /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv
+sed -i '1i#mtvstars,MTV Stars,Entertainment,Entertainment,Hollywood CA,0000000001,40' /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv
 ```
 
 - Open connection to HBase via Phoenix and check you can list tables
@@ -97,7 +105,7 @@ sed -i '1i#mtvstars,MTV Stars,Entertainment,Entertainment,Hollywood CA,000000000
 
 - Make sure HBase is up via Ambari and create Hbase table using csv data with placeholder tweet volume thresholds
 ```
-/root/twitterdemo/fetchSecuritiesList/runcreatehbasetables.sh
+/root/hdp21-twitter-demo/fetchSecuritiesList/runcreatehbasetables.sh
 ```
 
 - notice securities data was imported and alerts table is empty
@@ -110,19 +118,19 @@ select * from alerts;
 
 - create Hive table where we will store the tweets for later analysis
 ```
-hive -f /root/twitterdemo/stormtwitter-mvn/twitter.sql
+hive -f /root/hdp21-twitter-demo/stormtwitter-mvn/twitter.sql
 ```
 
 - Ensure Storm is started and then start storm topology to generate alerts into an HBase table for stocks whose tweet volume is higher than threshold this will also read tweets into Hive/HDFS/local disk/Solr/Banana. The first time you run below, maven will take 15min to download dependent jars
 ```
-cd /root/twitterdemo/stormtwitter-mvn
+cd /root/hdp21-twitter-demo/stormtwitter-mvn
 ./runtopology.sh
 ```
 
 - Other modes the topology could be started in future runs if you want to clean the setup or run locally (not on the storm running on the sandbox)
 ```
-/root/twitterdemo/stormtwitter-mvn/runtopology.sh runOnCluster clean
-/root/twitterdemo/stormtwitter-mvn/runtopology.sh runLocally skipclean
+/root/hdp21-twitter-demo/stormtwitter-mvn/runtopology.sh runOnCluster clean
+/root/hdp21-twitter-demo/stormtwitter-mvn/runtopology.sh runLocally skipclean
 ```
 
 - open storm UI and confirm topology was created
@@ -130,7 +138,7 @@ http://sandbox.hortonworks.com:8744/
 
 - In a new terminal, compile and run kafka producer to generate tweets containing first 400 stock symbols values from csv
 ```
-/root/twitterdemo/kafkaproducer/runkafkaproducer.sh
+/root/hdp21-twitter-demo/kafkaproducer/runkafkaproducer.sh
 ```
 
 ##### Observe results
@@ -177,7 +185,7 @@ storm kill Twittertopology
 ##### Import data to BI Tool via ODBC for analysis - optional
 
 - Create ORC table and copy the tweets over:
-hive -f /root/twitterdemo/stormtwitter-mvn/createORC.sql
+hive -f /root/hdp21-twitter-demo/stormtwitter-mvn/createORC.sql
 
 - View the contents of the ORC table created:
 http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_orc_partition_single
@@ -211,13 +219,13 @@ producer after 20-30s to avoid overloading the system
 It also may take a few minutes after stopping the kafka producer before all the tweets 
 show up in Banana/Hive
 ```
-mv /root/twitterdemo/fetchSecuritiesList/securities.csv /root/twitterdemo/fetchSecuritiesList/securities.csv.bak
+mv /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv.bak
 ```
 
 - To filter tweets based on geography open below file and uncomment out the line starting 
 "tweetFilterQuery.locations" and re-run runkafkaproducer.sh
 ```
-/root/twitterdemo/kafkaproducer/TestProducer.java
+/root/hdp21-twitter-demo/kafkaproducer/TestProducer.java
 ```
 
 ##### Reset demo
@@ -225,7 +233,7 @@ mv /root/twitterdemo/fetchSecuritiesList/securities.csv /root/twitterdemo/fetchS
 - This empties out the demo related HDFS folders, Hive table, Solr core, Banana webapp
 and stops the storm topoogy
 ```
-/root/twitterdemo/reset-demo.sh
+/root/hdp21-twitter-demo/reset-demo.sh
 ```
 
 - If kafka keeps sending your topology old tweets, you can also clear kafka queue
