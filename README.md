@@ -17,29 +17,32 @@ Listen for Twitter streams related to S&P 500 companies
 
 These setup steps are only needed first time
 
-# Download HDP 2.1 sandbox VM image (Hortonworks_Sandbox_2.1.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
-# Import Hortonworks_Sandbox_2.1.ova into VirtualBox/VMWare and configure its memory size to be at least 8GB RAM 
-
-# Pull latest code/scripts
+1. Download HDP 2.1 sandbox VM image (Hortonworks_Sandbox_2.1.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
+2. Import Hortonworks_Sandbox_2.1.ova into VirtualBox/VMWare and configure its memory size to be at least 8GB RAM 
+3. Pull latest code/scripts
+```
 git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git	
+```
 
-# This starts Ambari/HBase and installs maven, kafka, solr, banana, phoenix-may take 10 min
+4. This starts Ambari/HBase and installs maven, kafka, solr, banana, phoenix-may take 10 min
 ```
 /root/twitterdemo/setup-demo.sh
 source ~/.bashrc
 ```
 
-# Open Ambari (http://sandbox.hortonworks.com:8080) and make below changes under HBase>config and then restart HBase
+5.Open Ambari (http://sandbox.hortonworks.com:8080) and make below changes under HBase>config and then restart HBase
+```
 zookeeper.znode.parent=/hbase (from /hbase-unsecure)
 hbase.regionserver.wal.codec=org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec
+```
 
-# Start storm via Ambari
+6. Start storm via Ambari
 
 
-# Twitter4J requires you to have a Twitter account and obtain developer keys by registering an "app". Create a Twitter account and app and get your consumer key/token and access keys/tokens:
+7. Twitter4J requires you to have a Twitter account and obtain developer keys by registering an "app". Create a Twitter account and app and get your consumer key/token and access keys/tokens:
 https://apps.twitter.com > sign in > create new app > fill anything > create access tokens
 
-#Then enter the 4 values into the file below in the sandbox
+8. Then enter the 4 values into the file below in the sandbox
 ```
 vi /root/twitterdemo/kafkaproducer/twitter4j.properties
 oauth.consumerKey=
@@ -77,57 +80,64 @@ nohup /opt/kafka/latest/bin/kafka-server-start.sh /opt/kafka/latest/config/serve
 #####  Run Twitter demo
 
 ```
-#Review the list of stock symbols whose Twitter mentiones we will be tracking
+9. Review the list of stock symbols whose Twitter mentiones we will be tracking
 http://en.wikipedia.org/wiki/List_of_S%26P_500_companies
 
-#Generate securities csv from above page and review the securities.csv generated. 
-#The last field is the generated tweet volume threshold 
+10. Generate securities csv from above page and review the securities.csv generated. The last field is the generated tweet volume threshold 
+```
 /root/twitterdemo/fetchSecuritiesList/rungeneratecsv.sh
 vi /root/twitterdemo/fetchSecuritiesList/securities.csv
+```
 
-#Optional step for future runs: can add your other stocks/trending topics to csv to speed 
-#up tweets (no trailing spaces). Find these at http://mobile.twitter.com/trends
+11. Optional step for future runs: can add your other stocks/trending topics to csv to speed up tweets (no trailing spaces). Find these at http://mobile.twitter.com/trends
+```
 sed -i '1i$HDP,Hortonworks,Technology,Technology,Santa Clara CA,0000000001,5' /root/twitterdemo/fetchSecuritiesList/securities.csv
 sed -i '1i#mtvstars,MTV Stars,Entertainment,Entertainment,Hollywood CA,0000000001,40' /root/twitterdemo/fetchSecuritiesList/securities.csv
+```
 
-#Open connection to HBase via Phoenix and check you can list tables
+12. Open connection to HBase via Phoenix and check you can list tables
+```
 /root/phoenix-4.1.0-bin/hadoop2/bin/sqlline.py  sandbox.hortonworks.com:2181:/hbase
 !tables
 !q
+```
 
-#Make sure HBase is up via Ambari and create Hbase table using csv data with placeholder
-#tweet volume thresholds
+13. Make sure HBase is up via Ambari and create Hbase table using csv data with placeholder tweet volume thresholds
+```
 /root/twitterdemo/fetchSecuritiesList/runcreatehbasetables.sh
+```
 
-#notice securities data was imported and alerts table is empty
+14. notice securities data was imported and alerts table is empty
+```
 /root/phoenix-4.1.0-bin/hadoop2/bin/sqlline.py  sandbox.hortonworks.com:2181:/hbase
 select * from securities;
 select * from alerts;
 !q
+```
 
-#create Hive table where we will store the tweets for later analysis
+15. create Hive table where we will store the tweets for later analysis
+```
 hive -f /root/twitterdemo/stormtwitter-mvn/twitter.sql
+```
 
-
-#Ensure Storm is started and then start storm topology to generate alerts into an HBase 
-#table for stocks whose tweet volume is higher than threshold this will also read tweets 
-#into Hive/HDFS/local disk/Solr/Banana. 
-#The first time you run below, maven will take 15min to download dependent jars
+16. Ensure Storm is started and then start storm topology to generate alerts into an HBase table for stocks whose tweet volume is higher than threshold this will also read tweets into Hive/HDFS/local disk/Solr/Banana. The first time you run below, maven will take 15min to download dependent jars
+```
 cd /root/twitterdemo/stormtwitter-mvn
 ./runtopology.sh
+```
 
-#Other modes the topology could be run in in future runs if you want to clean the setup or
-#run locally (not on the storm running on the sandbox)
-#/root/twitterdemo/stormtwitter-mvn/runtopology.sh runOnCluster clean
-#/root/twitterdemo/stormtwitter-mvn/runtopology.sh runLocally skipclean
+17. Other modes the topology could be started in future runs if you want to clean the setup or run locally (not on the storm running on the sandbox)
+```
+/root/twitterdemo/stormtwitter-mvn/runtopology.sh runOnCluster clean
+/root/twitterdemo/stormtwitter-mvn/runtopology.sh runLocally skipclean
+```
 
-#open storm UI and confirm topology was created
+18. open storm UI and confirm topology was created
 http://sandbox.hortonworks.com:8744/
 
-#In a new terminal, compile and run kafka producer to generate tweets containing first 
-#400 stock symbols values from csv
+19. In a new terminal, compile and run kafka producer to generate tweets containing first 400 stock symbols values from csv
+```
 /root/twitterdemo/kafkaproducer/runkafkaproducer.sh
-
 ```
 
 ##### Observe results
