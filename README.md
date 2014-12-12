@@ -20,11 +20,14 @@ These setup steps are only needed first time
 1. Download HDP 2.1 sandbox VM image (Hortonworks_Sandbox_2.1.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
 2. Import Hortonworks_Sandbox_2.1.ova into VirtualBox/VMWare and configure its memory size to be at least 8GB RAM 
 3. Pull latest code/scripts
-        git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git`	
+```
+    git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git`	
+```
 4. This starts Ambari/HBase and installs maven, kafka, solr, banana, phoenix-may take 10 min
-        /root/twitterdemo/setup-demo.sh
-        source ~/.bashrc
-
+``` shell
+    /root/twitterdemo/setup-demo.sh
+    source ~/.bashrc
+```
 5. Open Ambari (http://sandbox.hortonworks.com:8080) and make below changes under HBase>config and then restart HBase
 ``` shell
     zookeeper.znode.parent=/hbase
