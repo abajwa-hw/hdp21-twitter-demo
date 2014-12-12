@@ -12,12 +12,12 @@ sudo -u hdfs hadoop fs -mkdir /tweets/staging
 sudo -u hdfs hadoop fs -chmod +rwx /tweets/staging
 
 echo "Re-creating tweets hive tables"
-hive -f /root/twitterdemo/stormtwitter-mvn/twitter.sql
+hive -f /root/hdp21-twitter-demo/stormtwitter-mvn/twitter.sql
 hive -e 'drop table tweets_orc_partition_single;'
 
 echo "Resetting Solr/Banana"
-/root/twitterdemo/setup-scripts/restart_solr_banana.sh
+/root/hdp21-twitter-demo/setup-scripts/restart_solr_banana.sh
 
 echo "Re-creating alerts table in HBase"
-/root/twitterdemo/fetchSecuritiesList/runcreatehbasetables.sh
+/root/hdp21-twitter-demo/fetchSecuritiesList/runcreatehbasetables.sh
 

@@ -1,6 +1,6 @@
 
 echo "Compiling jar..."
-cd /root/twitterdemo/fetchSecuritiesList
+cd /root/hdp21-twitter-demo/fetchSecuritiesList
 rm -f fetchsecurities.jar
 rm -rf classes/*
 javac  -d classes *.java

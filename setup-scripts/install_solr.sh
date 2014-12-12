@@ -24,5 +24,5 @@ mv /usr/lib/storm/lib/httpclient-4.1.1.jar /usr/lib/storm/lib/httpclient-4.1.1.j
 mv /usr/lib/storm/lib/httpcore-4.1.jar /usr/lib/storm/lib/httpcore-4.1.jar.bak
 
 mv /opt/solr/latest/hdp/solr/tweets/conf/solrconfig.xml /opt/solr/latest/hdp/solr/tweets/conf/solrconfig.xml.bak
-cp ~/twitterdemo/solrconfig.xml /opt/solr/latest/hdp/solr/tweets/conf/
+cp ~/hdp21-twitter-demo/solrconfig.xml /opt/solr/latest/hdp/solr/tweets/conf/
 

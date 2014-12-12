@@ -29,7 +29,7 @@ fi
 
 if [ "$HDFSMODE" == "clean" ]
 then
-	/root/twitterdemo/reset-demo.sh
+	/root/hdp21-twitter-demo/reset-demo.sh
 fi
 echo "Starting toplogy ..."
 

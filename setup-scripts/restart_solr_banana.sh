@@ -9,7 +9,7 @@ echo "Resetting Solr...."
 ps -ef | grep sol[r] | awk '{print $2}' | sudo xargs kill
 rm  -f /opt/solr/latest/hdp/solr/tweets/core.properties 
 hadoop fs -rm -r /user/solr/tweets
-nohup java -jar /opt/solr/latest/hdp/start.jar -Djetty.home=/opt/solr/latest/hdp -Dsolr.solr.home=/opt/solr/latest/hdp/solr &> /root/twitterdemo/logs/solr.out &
+nohup java -jar /opt/solr/latest/hdp/start.jar -Djetty.home=/opt/solr/latest/hdp -Dsolr.solr.home=/opt/solr/latest/hdp/solr &> /root/hdp21-twitter-demo/logs/solr.out &
 sleep 10
 curl "http://localhost:8983/solr/admin/cores?action=CREATE&name=tweets&instanceDir=/opt/solr/latest/hdp/solr/tweets"
 

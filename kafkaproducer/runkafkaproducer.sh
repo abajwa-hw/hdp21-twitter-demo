@@ -19,7 +19,7 @@ fi
 	
 
 echo "Compiling jar..."
-cd /root/twitterdemo/kafkaproducer
+cd /root/hdp21-twitter-demo/kafkaproducer
 rm -f producertest.jar
 rm -rf classes/*
 export CLASSPATH=/opt/kafka/kafka_2.8.0-0.8.1.1/libs/\*:./\*
