@@ -17,37 +17,36 @@ Listen for Twitter streams related to S&P 500 companies
 
 These setup steps are only needed first time
 
-#Download HDP 2.1 sandbox VM image (Hortonworks_Sandbox_2.1.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
-#Import Hortonworks_Sandbox_2.1.ova into VirtualBox/VMWare and configure its memory size 
-#to be at least 8GB RAM 
+# Download HDP 2.1 sandbox VM image (Hortonworks_Sandbox_2.1.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
+# Import Hortonworks_Sandbox_2.1.ova into VirtualBox/VMWare and configure its memory size to be at least 8GB RAM 
 
-#Pull latest code/scripts
+# Pull latest code/scripts
 git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git	
 
-#This starts Ambari/HBase and installs maven, kafka, solr, banana, phoenix-may take 10 min
+# This starts Ambari/HBase and installs maven, kafka, solr, banana, phoenix-may take 10 min
+```
 /root/twitterdemo/setup-demo.sh
 source ~/.bashrc
+```
 
-#Open Ambari (http://sandbox.hortonworks.com:8080) and make below changes under 
-#HBase>config and then restart HBase
+# Open Ambari (http://sandbox.hortonworks.com:8080) and make below changes under HBase>config and then restart HBase
 zookeeper.znode.parent=/hbase (from /hbase-unsecure)
 hbase.regionserver.wal.codec=org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec
 
-#Start storm via Ambari
+# Start storm via Ambari
 
 
-#Twitter4J requires you to have a Twitter account and obtain developer keys by registering 
-#an "app" . Create a Twitter account and app and get your consumer key/token and access 
-#keys/tokens:
+# Twitter4J requires you to have a Twitter account and obtain developer keys by registering an "app". Create a Twitter account and app and get your consumer key/token and access keys/tokens:
 https://apps.twitter.com > sign in > create new app > fill anything > create access tokens
 
 #Then enter the 4 values into the file below in the sandbox
+```
 vi /root/twitterdemo/kafkaproducer/twitter4j.properties
 oauth.consumerKey=
 oauth.consumerSecret=
 oauth.accessToken=
 oauth.accessTokenSecret=
-
+```
 
 
 ##### Kafka basics - (optional)
@@ -163,27 +162,28 @@ Notice tweets written to sandbox filesystem via FileSystem bolt
 vi /tmp/Tweets.xls
 ```
 
-To stop collecting tweets:
+###### To stop collecting tweets:
 
-#kill the storm topology to stop processing tweets
+# kill the storm topology to stop processing tweets
 ```
 storm kill Twittertopology
 ```
-#To stop producing tweets, press Control-C in the terminal you ran runkafkaproducer.sh 
+# To stop producing tweets, press Control-C in the terminal you ran runkafkaproducer.sh 
+
 
 ##### Import data to BI Tool via ODBC for analysis - optional
 
-#Create ORC table and copy the tweets over:
+# Create ORC table and copy the tweets over:
 hive -f /root/twitterdemo/stormtwitter-mvn/createORC.sql
 
-#View the contents of the ORC table created:
+# View the contents of the ORC table created:
 http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_orc_partition_single
 
 # Grant select access to user hive to the ORC table 
 ```
 hive -e 'grant SELECT on table tweets_orc_partition_single to user hive'
 ```
-#On windows VM create an ODBC connector with below settings: 
+# On windows VM create an ODBC connector with below settings: 
 ```
 	Host=<IP address of sandbox VM>
 	port=10000 
@@ -193,8 +193,7 @@ hive -e 'grant SELECT on table tweets_orc_partition_single to user hive'
 	UserName=hive 
 ```
 
-#Import data from tweets_orc_partition_single table over ODBC and create some 
-#visualizations using PowerCharts
+# Import data from tweets_orc_partition_single table over ODBC and create some visualizations using PowerCharts
 
 
 
