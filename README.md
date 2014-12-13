@@ -214,7 +214,7 @@ http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_orc_partition_s
 ```
 hive -e 'grant SELECT on table tweets_orc_partition_single to user hive'
 ```
-- On windows VM create an ODBC connector with below settings: 
+- On windows VM create an ODBC connector called sandbox with below settings: 
 ```
 	Host=<IP address of sandbox VM>
 	port=10000 
@@ -225,7 +225,12 @@ hive -e 'grant SELECT on table tweets_orc_partition_single to user hive'
 ```
 ![Image](../master/screenshots/ODBC-screenshot.png?raw=true)
 
-- Import data from tweets_orc_partition_single table over ODBC and create some visualizations using PowerCharts
+- Import data from tweets_orc_partition_single table into Excel over ODBC
+Data > From other Datasources > From dataconnection wizard > ODBC DSN > sandbox  > tweets_orc_partition_single > Finish > Yes > OK
+
+![Image](../master/screenshots/Excel-screenshot.png?raw=true)
+
+- Create some visualizations using PowerCharts (e.g. plotting tweets with coordinates on map)
 ![Image](../master/screenshots/PowerChart-screenshot.png?raw=true)
 
 
