@@ -197,6 +197,8 @@ hive -f /root/hdp21-twitter-demo/stormtwitter-mvn/createORC.sql
 - View the contents of the ORC table created:
 http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_orc_partition_single
 
+![Image](../master/screenshots/Hue-screenshot.png?raw=true)
+
 - Grant select access to user hive to the ORC table 
 ```
 hive -e 'grant SELECT on table tweets_orc_partition_single to user hive'
