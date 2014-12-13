@@ -1,4 +1,4 @@
-## Streaming demo
+## Streaming workshop demo
 
 #### Monitor Twitter stream for S&P 500 companies to identify & act on unexpected increases in tweet volume
 
@@ -185,7 +185,9 @@ storm kill Twittertopology
 ##### Import data to BI Tool via ODBC for analysis - optional
 
 - Create ORC table and copy the tweets over:
+```
 hive -f /root/hdp21-twitter-demo/stormtwitter-mvn/createORC.sql
+```
 
 - View the contents of the ORC table created:
 http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_orc_partition_single
