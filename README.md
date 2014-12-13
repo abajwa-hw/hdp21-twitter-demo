@@ -165,12 +165,11 @@ http://sandbox.hortonworks.com:8983/banana
 ![Image](../master/screenshots/Banana-screenshot.png?raw=true)
 
  
-- Run a query in Solr to look at tweets/hashtags/alerts
+- Run a query in Solr to look at tweets/hashtags/alerts. Click on 'query' and enter a query. Examples are doctype_s:tweet and text_t:AAPL
 http://sandbox.hortonworks.com:8983/solr/#/tweets
 
-Click on 'query' and enter a query. Examples are doctype_s:tweet and text_t:AAPL
 
-You can also search using Solr's APIs. The below displays all alerts in JSON format
+- You can also search using Solr's APIs. The below displays all alerts in JSON format
 http://sandbox.hortonworks.com:8983/solr/tweets/select?q=*%3A*&df=id&wt=json&fq=doctype_s:alert
 
 ![Image](../master/screenshots/Solr-apisearch-screenshot.png?raw=true)
