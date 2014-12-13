@@ -182,6 +182,7 @@ http://sandbox.hortonworks.com:8983/solr/tweets/select?q=*%3A*&df=id&wt=json&fq=
 /root/phoenix-4.1.0-bin/hadoop2/bin/sqlline.py  sandbox.hortonworks.com:2181:/hbase
 select * from alerts
 ```
+![Image](../master/screenshots/Alerts-screenshot.png?raw=true)
 
 - Notice tweets written to sandbox filesystem via FileSystem bolt
 ```
