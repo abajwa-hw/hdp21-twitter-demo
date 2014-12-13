@@ -36,7 +36,8 @@ git clone https://github.com/abajwa-hw/hdp21-twitter-demo.git
 /root/hdp21-twitter-demo/setup-demo.sh
 source ~/.bashrc
 ```
-- Open Ambari (http://sandbox.hortonworks.com:8080) and make below changes under HBase>config and then restart HBase
+- Open Ambari using admin/admin and make below changes under HBase>config and then restart HBase
+http://sandbox.hortonworks.com:8080
 ``` 
 zookeeper.znode.parent=/hbase
 hbase.regionserver.wal.codec=org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec
@@ -87,10 +88,10 @@ http://en.wikipedia.org/wiki/List_of_S%26P_500_companies
 - Generate securities csv from above page and review the securities.csv generated. The last field is the generated tweet volume threshold 
 ```
 /root/hdp21-twitter-demo/fetchSecuritiesList/rungeneratecsv.sh
-vi /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv
+cat /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv
 ```
 
-- Optional step for future runs: can add your other stocks/trending topics to csv to speed up tweets (no trailing spaces). Find these at http://mobile.twitter.com/trends
+- Optional step for future runs: can add other stocks/trending topics to csv to speed up tweets (no trailing spaces). Find these at http://mobile.twitter.com/trends
 ```
 sed -i '1i$HDP,Hortonworks,Technology,Technology,Santa Clara CA,0000000001,5' /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv
 sed -i '1i#mtvstars,MTV Stars,Entertainment,Entertainment,Hollywood CA,0000000001,40' /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv
