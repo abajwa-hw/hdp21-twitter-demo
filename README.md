@@ -212,9 +212,10 @@ hive -e 'grant SELECT on table tweets_orc_partition_single to user hive'
 	Mechanism=User Name 
 	UserName=hive 
 ```
+![Image](../master/screenshots/ODBC-screenshot.png?raw=true)
 
 - Import data from tweets_orc_partition_single table over ODBC and create some visualizations using PowerCharts
-
+![Image](../master/screenshots/PowerChart-screenshot.png?raw=true)
 
 
 
