@@ -152,6 +152,8 @@ http://sandbox.hortonworks.com:8744/
 - Open HDFS via Hue and see the tweets getting stored (note not all tweets have long/lat):
 http://sandbox.hortonworks.com:8000/filebrowser/#/tweets/staging
 
+![Image](../master/screenshots/HDFS-screenshot.png?raw=true)
+
 - Open Hive table via Hue. Notice tweets are being streamed to Hive table that was created:
 http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_text_partition
 
@@ -165,7 +167,8 @@ http://sandbox.hortonworks.com:8983/banana
  
 - Run a query in Solr to look at tweets/hashtags/alerts
 http://sandbox.hortonworks.com:8983/solr/#/tweets
-e.g. doctype_s:tweet or text_t:AAPL
+
+Click on query and e.g. doctype_s:tweet or text_t:AAPL
 
 - Open connection to HBase via Phoenix and notice alerts were generated
 ```
