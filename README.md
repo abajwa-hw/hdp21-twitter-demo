@@ -158,7 +158,7 @@ http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_text_partition
 - Open Banana UI and view/search tweet summary and alerts:
 http://sandbox.hortonworks.com:8983/banana
 
-![Image](../blob/master/screenshots/Banana-screenshot.png?raw=true)
+![Image](../master/screenshots/Banana-screenshot.png?raw=true)
 
  
 - Run a query in Solr to look at tweets/hashtags/alerts
