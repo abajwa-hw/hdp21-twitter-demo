@@ -248,10 +248,10 @@ show up in Banana/Hive
 mv /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv /root/hdp21-twitter-demo/fetchSecuritiesList/securities.csv.bak
 ```
 
-- To filter tweets based on geography open below file and uncomment out the line starting 
-"tweetFilterQuery.locations" and re-run runkafkaproducer.sh
+- To filter tweets based on geography open below file and uncomment [this line](https://github.com/abajwa-hw/hdp21-twitter-demo/blob/master/kafkaproducer/TestProducer.java#L176) and re-run runkafkaproducer.sh
 ```
-/root/hdp21-twitter-demo/kafkaproducer/TestProducer.java
+vi /root/hdp21-twitter-demo/kafkaproducer/TestProducer.java
+/root/hdp21-twitter-demo/kafkaproducer/runkafkaproducer.sh
 ```
 
 ##### Reset demo
