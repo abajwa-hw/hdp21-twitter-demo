@@ -155,6 +155,8 @@ http://sandbox.hortonworks.com:8000/filebrowser/#/tweets/staging
 - Open Hive table via Hue. Notice tweets are being streamed to Hive table that was created:
 http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_text_partition
 
+![Image](../master/screenshots/Hue-text-screenshot.png?raw=true)
+
 - Open Banana UI and view/search tweet summary and alerts:
 http://sandbox.hortonworks.com:8983/banana
 
