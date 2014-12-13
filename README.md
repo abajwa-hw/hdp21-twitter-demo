@@ -129,8 +129,8 @@ cd /root/hdp21-twitter-demo/stormtwitter-mvn
 
 - Other modes the topology could be started in future runs if you want to clean the setup or run locally (not on the storm running on the sandbox)
 ```
-/root/hdp21-twitter-demo/stormtwitter-mvn/runtopology.sh runOnCluster clean
-/root/hdp21-twitter-demo/stormtwitter-mvn/runtopology.sh runLocally skipclean
+./runtopology.sh runOnCluster clean
+./runtopology.sh runLocally skipclean
 ```
 
 - open storm UI and confirm topology was created
