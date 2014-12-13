@@ -168,7 +168,12 @@ http://sandbox.hortonworks.com:8983/banana
 - Run a query in Solr to look at tweets/hashtags/alerts
 http://sandbox.hortonworks.com:8983/solr/#/tweets
 
-Click on query and e.g. doctype_s:tweet or text_t:AAPL
+Click on 'query' and enter a query. Examples are doctype_s:tweet and text_t:AAPL
+
+You can also search using Solr's APIs. The below displays all alerts in JSON format
+http://sandbox.hortonworks.com:8983/solr/tweets/select?q=*%3A*&df=id&wt=json&fq=doctype_s:alert
+
+![Image](../master/screenshots/Solr-apisearch-screenshot.png?raw=true)
 
 - Open connection to HBase via Phoenix and notice alerts were generated
 ```
