@@ -2,7 +2,7 @@
 
 This demo was part of a technical webinar workshop: "Real Time Monitoring with Hadoop".
 
-Slides and webinar recording are avaialable at http://hortonworks.com/partners/learn/
+Slides and webinar recording are available at http://hortonworks.com/partners/learn/
 
 #### Monitor Twitter stream for S&P 500 companies to identify & act on unexpected increases in tweet volume
 
