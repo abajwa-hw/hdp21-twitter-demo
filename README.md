@@ -22,7 +22,7 @@ Listen for Twitter streams related to S&P 500 companies
 2. [Kafka basics - optional](https://github.com/abajwa-hw/hdp21-twitter-demo#kafka-basics---optional)
 3. [Run demo](https://github.com/abajwa-hw/hdp21-twitter-demo#run-twitter-demo)
 4. [Observe results](https://github.com/abajwa-hw/hdp21-twitter-demo#observe-results) in HDFS, Hive, Solr/Banana, HBase
-5. [Import data into BI tools](https://github.com/abajwa-hw/hdp21-twitter-demo#import-data-to-bi-tool-via-odbc-for-analysis---optional)
+5. [Import data into BI tools](https://github.com/abajwa-hw/hdp21-twitter-demo#import-data-to-bi-tool-via-odbc-for-analysis---optional) after copying into ORC table
 6. [Other things to try](https://github.com/abajwa-hw/hdp21-twitter-demo#other-things-to-try-analyze-any-kind-of-tweet---optional)
 7. [Reset demo](https://github.com/abajwa-hw/hdp21-twitter-demo#reset-demo)
 
