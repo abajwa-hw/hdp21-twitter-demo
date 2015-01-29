@@ -190,7 +190,7 @@ http://sandbox.hortonworks.com:8983/solr/#/tweets
 
 - You can also search using Solr's APIs. The below displays all alerts in JSON format
 http://sandbox.hortonworks.com:8983/solr/tweets/select?q=*%3A*&df=id&wt=json&fq=doctype_s:alert
-
+  - The SolrBolt code showing how the data gets into Solr is shown [here](https://github.com/abajwa-hw/hdp21-twitter-demo/blob/master/stormtwitter-mvn/src/main/java/hellostorm/SolrBolt.java)
 ![Image](../master/screenshots/Solr-apisearch-screenshot.png?raw=true)
 
 - Open connection to HBase via Phoenix and notice alerts were generated
