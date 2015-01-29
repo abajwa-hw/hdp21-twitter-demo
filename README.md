@@ -180,7 +180,7 @@ http://sandbox.hortonworks.com:8000/beeswax/table/default/tweets_text_partition
 http://sandbox.hortonworks.com:8983/banana
 
 ![Image](../master/screenshots/Banana-screenshot.png?raw=true)
-
+  - For more details on this dashboard was built, refer to the underlying [json](https://github.com/abajwa-hw/hdp21-twitter-demo/blob/master/default.json) file that defines all the panels 
  
 - Run a query in Solr to look at tweets/hashtags/alerts. Click on 'Query' and enter a query under 'q'. 
 Examples are doctype_s:tweet and text_t:AAPL. You can choose an output format under 'wt' and click 'Execute Query'.
