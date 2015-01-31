@@ -38,6 +38,7 @@ Listen for Twitter streams related to S&P 500 companies
 ##### Prebuilt VM setup option
 
 There is a prebuilt VM available with the Twitter streaming/search demo ready which can be downloaded from [here](https://dl.dropboxusercontent.com/u/114020/Hortonworks_Sandbox_2.1_twitter_solr_demo.ova) 
+
 1. Download the ova and import into VM Ware Fusion and start the VM
 2. Make sure HDFS, Hive, HBase, Storm are up via Ambari
 3. Run below to start Solr and sumbit Storm topology to listen for Tweets
