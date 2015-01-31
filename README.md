@@ -42,13 +42,13 @@ There is a prebuilt VM available with the Twitter streaming/search demo ready wh
 1. Download the ova and import into VM Ware Fusion and start the VM
 2. Make sure HDFS, Hive, HBase, Storm are up via Ambari
 3. Run below to start Solr and sumbit Storm topology to listen for Tweets
-```
-~/hdp21-twitter-demo/start_demo.sh
-```
+   ```
+   ~/hdp21-twitter-demo/start_demo.sh
+   ```
 4. Run below to start the Kafka producer that generates the Tweets using Twitter4J
-```
-~/hdp21-twitter-demo/kafkaproducer/runkafkaproducer.sh
-```
+   ```
+   ~/hdp21-twitter-demo/kafkaproducer/runkafkaproducer.sh
+   ```
 5. Observe results following steps [here](https://github.com/abajwa-hw/hdp21-twitter-demo#observe-results)
 
 ##### Setup demo manually option
