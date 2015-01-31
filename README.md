@@ -1,6 +1,6 @@
 ## Streaming workshop demo
 
-This demo was part of a technical webinar workshop: "Real Time Monitoring with Hadoop".
+This demo was part of a technical webinar workshop: "Real Time Monitoring with Hadoop" and "Search Workshop"
 
 Slides and webinar recording are available at http://hortonworks.com/partners/learn/
 
@@ -19,9 +19,14 @@ Listen for Twitter streams related to S&P 500 companies
 - Refine:
   -  Update threshold values based on historical analysis of tweet volumes
 
+- Demo setup:
+	- Either download and start prebuilt VM
+	- Start HDP 2.1 sandbox and run provided scripts to setup demo 
+	
 ##### Contents
 
-1. [Setup demo](https://github.com/abajwa-hw/hdp21-twitter-demo#setup-demo)
+1. [Prebuilt VM option](https://github.com/abajwa-hw/hdp21-twitter-demo#prebuilt-vm-setup-option)
+1. [Setup demo manually option](https://github.com/abajwa-hw/hdp21-twitter-demo#setup-demo-manually-option)
 2. [Kafka basics - optional](https://github.com/abajwa-hw/hdp21-twitter-demo#kafka-basics---optional)
 3. [Run demo](https://github.com/abajwa-hw/hdp21-twitter-demo#run-twitter-demo) to monitor Tweets about S&P 500 securities in realtime
 4. [Observe results](https://github.com/abajwa-hw/hdp21-twitter-demo#observe-results) in HDFS, Hive, Solr/Banana, HBase
@@ -29,7 +34,23 @@ Listen for Twitter streams related to S&P 500 companies
 6. [Other things to try - optional](https://github.com/abajwa-hw/hdp21-twitter-demo#other-things-to-try-analyze-any-kind-of-tweet---optional)
 7. [Reset demo](https://github.com/abajwa-hw/hdp21-twitter-demo#reset-demo)
 
-##### Setup demo
+
+##### Prebuilt VM setup option
+
+There is a prebuilt VM available with the Twitter streaming/search demo ready which can be downloaded from [here](https://dl.dropboxusercontent.com/u/114020/Hortonworks_Sandbox_2.1_twitter_solr_demo.ova) 
+1. Download the ova and import into VM Ware Fusion and start the VM
+2. Make sure HDFS, Hive, HBase, Storm are up via Ambari
+3. Run below to start Solr and sumbit Storm topology to listen for Tweets
+```
+~/hdp21-twitter-demo/start_demo.sh
+```
+4. Run below to start the Kafka producer that generates the Tweets using Twitter4J
+```
+~/hdp21-twitter-demo/kafkaproducer/runkafkaproducer.sh
+```
+5. Observe results following steps [here](https://github.com/abajwa-hw/hdp21-twitter-demo#observe-results)
+
+##### Setup demo manually option
 
 These setup steps are only needed first time
 

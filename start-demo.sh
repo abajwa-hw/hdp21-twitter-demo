@@ -8,4 +8,5 @@ else
 fi
 
 /root/hdp21-twitter-demo/setup-scripts/restart_solr_banana.sh
-
+cd ~/hdp21-twitter-demo/stormtwitter-mvn
+./runtopology.sh
