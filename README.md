@@ -202,6 +202,7 @@ http://sandbox.hortonworks.com:8983/banana
 
 ![Image](../master/screenshots/Banana-screenshot.png?raw=true)
   - For more details on the Banana dashboard panels are built, refer to the underlying [json](https://github.com/abajwa-hw/hdp21-twitter-demo/blob/master/default.json) file that defines all the panels 
+  - In case you don't see any tweets, try changing to a different timeframe on timeline (e.g. by clicking 24 hours, 7 days etc). If there is a time mismatch between the VM and your machine, the tweets may appear at a different place on the timeline than expected.
  
 - Run a query in Solr to look at tweets/hashtags/alerts. Click on 'Query' and enter a query under 'q'. 
 Examples are doctype_s:tweet and text_t:AAPL. You can choose an output format under 'wt' and click 'Execute Query'.
