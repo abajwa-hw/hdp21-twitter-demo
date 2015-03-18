@@ -4,6 +4,8 @@ This demo was part of a technical webinar workshop: "Real Time Monitoring with H
 
 Slides and webinar recording are available at http://hortonworks.com/partners/learn/
 
+The updated version of this demo that works with HDP 2.2 sandbox is available [here](https://github.com/abajwa-hw/hdp22-twitter-demo)
+
 #### Monitor Twitter stream for S&P 500 companies to identify & act on unexpected increases in tweet volume
 
 - Ingest: 
