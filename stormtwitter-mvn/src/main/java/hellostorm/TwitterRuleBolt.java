@@ -203,9 +203,7 @@ public class TwitterRuleBolt implements IRichBolt {
 	private static void createSolrAlert(String userId, String created, String hashtag){
 
 		Date  d=new Date(created);
-		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z+9HOUR'");
-		//SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z-4HOUR'");
-		//SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z+9HOUR'");
 		created = formatter.format(d);	
 	
 		SolrServer server  = new HttpSolrServer("http://sandbox.hortonworks.com:8983/solr/tweets");

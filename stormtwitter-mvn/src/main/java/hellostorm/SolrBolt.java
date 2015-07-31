@@ -44,9 +44,7 @@ public class SolrBolt extends BaseBasicBolt {
 
 
 		Date  d=new Date(created);
-		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z+9HOUR'");
-		//SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z-4HOUR'");
-		//SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z+9HOUR'");
 		created = formatter.format(d);
 
 		//create a hashtag doc
